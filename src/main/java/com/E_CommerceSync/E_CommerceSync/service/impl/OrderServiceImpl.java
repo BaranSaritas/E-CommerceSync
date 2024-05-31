@@ -1,4 +1,4 @@
-package com.E_CommerceSync.E_CommerceSync.service.Impl;
+package com.E_CommerceSync.E_CommerceSync.service.impl;
 
 import com.E_CommerceSync.E_CommerceSync.model.Order;
 import com.E_CommerceSync.E_CommerceSync.repository.OrderRepository;
