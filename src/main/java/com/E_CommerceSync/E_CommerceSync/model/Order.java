@@ -1,5 +1,6 @@
 package com.E_CommerceSync.E_CommerceSync.model;
 
+import com.E_CommerceSync.E_CommerceSync.utils.helper.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +21,7 @@ public class Order {
     private Long customerId;
     private LocalDateTime orderDate = LocalDateTime.now();
     private BigDecimal totalAmount;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.PENDING;
+
 }

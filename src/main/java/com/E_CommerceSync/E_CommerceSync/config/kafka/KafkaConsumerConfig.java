@@ -1,6 +1,9 @@
 package com.E_CommerceSync.E_CommerceSync.config.kafka;
 
 import com.E_CommerceSync.E_CommerceSync.dto.request.OrderRequest;
+import com.E_CommerceSync.E_CommerceSync.model.Order;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServers ;
     @Value("${spring.kafka.consumer.group-id}")
     private String groupId ;
@@ -41,9 +45,9 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, OrderRequest> createListenerContainerFactoryModel(){
-        ConcurrentKafkaListenerContainerFactory<String, OrderRequest> listenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
-        listenerContainerFactory.setConsumerFactory(getConsumerFactory(OrderRequest.class));
+    public ConcurrentKafkaListenerContainerFactory<String, Order> createListenerContainerFactoryModel(){
+        ConcurrentKafkaListenerContainerFactory<String, Order> listenerContainerFactory = new ConcurrentKafkaListenerContainerFactory<>();
+        listenerContainerFactory.setConsumerFactory(getConsumerFactory(Order.class));
         return listenerContainerFactory;
     }
 }

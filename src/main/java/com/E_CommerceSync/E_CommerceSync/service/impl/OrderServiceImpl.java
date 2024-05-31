@@ -3,7 +3,9 @@ package com.E_CommerceSync.E_CommerceSync.service.impl;
 import com.E_CommerceSync.E_CommerceSync.model.Order;
 import com.E_CommerceSync.E_CommerceSync.repository.OrderRepository;
 import com.E_CommerceSync.E_CommerceSync.service.OrderService;
+import com.E_CommerceSync.E_CommerceSync.utils.aop.log.LoggingAspect;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +27,9 @@ public class OrderServiceImpl implements OrderService {
         return repository.findById(orderId).orElse(null);
     }
 
+    @LoggingAspect
     @Override
+    @KafkaListener(topics = "model-topic",containerFactory ="createListenerContainerFactoryModel")
     public Order createOrder(Order order) {
         return repository.save(order);
     }
