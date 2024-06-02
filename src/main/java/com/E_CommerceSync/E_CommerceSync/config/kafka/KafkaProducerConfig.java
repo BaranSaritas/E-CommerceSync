@@ -2,6 +2,8 @@ package com.E_CommerceSync.E_CommerceSync.config.kafka;
 
 
 import com.E_CommerceSync.E_CommerceSync.dto.request.OrderRequest;
+import com.E_CommerceSync.E_CommerceSync.model.Order;
+import com.E_CommerceSync.E_CommerceSync.utils.helper.OrderStatus;
 import io.confluent.kafka.serializers.KafkaJsonSerializer;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 @Component
@@ -35,24 +39,18 @@ public class KafkaProducerConfig {
         producer = new KafkaProducer<>(config);
     }
 
-    /*
-    @Scheduled(fixedRate = 1000)
-    public void produceModel() {
+
+    public void produceOrder(OrderRequest orderRequest) {
         try {
-
-            SModel sModel = new SModel(212,"Baran","Sepet");
-
-            String topicModel = "model-topic";
-            ProducerRecord<String, SModel> record = new ProducerRecord<String, SModel>(topicModel, sModel);
+            ProducerRecord<String, OrderRequest> record = new ProducerRecord<String, OrderRequest>(topic, orderRequest);
             producer.send(record);
-
 
             logger.info("Sent message: {}", record.toString());
         } catch (Exception e) {
             logger.error("Error occurred while producing message", e);
         }
     }
-    */
+
 
 
 }

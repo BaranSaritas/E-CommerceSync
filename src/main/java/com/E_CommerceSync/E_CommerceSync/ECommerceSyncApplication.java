@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.kafka.annotation.KafkaListener;
 
 @SpringBootApplication
 @Slf4j
+@ComponentScan(basePackages = {"com.E_CommerceSync.E_CommerceSync"})
 public class ECommerceSyncApplication  implements CommandLineRunner {
 
 	public static void main(String[] args) {

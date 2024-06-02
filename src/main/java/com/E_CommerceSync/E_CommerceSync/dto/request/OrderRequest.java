@@ -11,14 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "OrdersTable")
 public class OrderRequest {
-
-    private Long Id;
     private Long customerId;
-    private LocalDateTime orderDate = LocalDateTime.now();
     private BigDecimal totalAmount;
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-
 }

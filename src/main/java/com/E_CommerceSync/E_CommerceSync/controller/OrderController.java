@@ -1,5 +1,6 @@
 package com.E_CommerceSync.E_CommerceSync.controller;
 
+import com.E_CommerceSync.E_CommerceSync.dto.request.OrderRequest;
 import com.E_CommerceSync.E_CommerceSync.model.Order;
 import com.E_CommerceSync.E_CommerceSync.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +30,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order createdOrder = orderService.createOrder(order);
-        return ResponseEntity.ok(createdOrder);
+    public ResponseEntity<String> createOrder(@RequestBody OrderRequest order) {
+         orderService.createOrder(order);
+        return ResponseEntity.ok().build();
     }
 }
