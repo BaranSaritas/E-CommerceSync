@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
 
-    @Mapping(target = "status", constant = "COMPLETED")
+    @Mapping(target = "com.E_CommerceSync.E_CommerceSync.model.Order.status", constant = "COMPLETED")
     Order orderRequestToOrder(OrderRequest request);
+
 }

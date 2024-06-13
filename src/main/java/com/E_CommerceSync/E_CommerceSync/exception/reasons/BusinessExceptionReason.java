@@ -13,6 +13,7 @@ public enum BusinessExceptionReason implements BusinessExceptionPolicy {
     USER_NOT_FOUND_BY_EMAIL("User not found by email", HttpStatus.NOT_FOUND),
     USER_NOT_FOUND_BY_ID("User not found by id", HttpStatus.NOT_FOUND),
     EMAIL_IS_NOT_VERIFIED("Email is not verified", HttpStatus.BAD_REQUEST),
+    EMAIL_IS_NOT_SEND("Email is not send", HttpStatus.NOT_ACCEPTABLE),
     USER_ALREADY_VERIFIED("User already verified", HttpStatus.BAD_REQUEST),
     ADMIN_NOT_FOUND_BY_EMAIL("Admin not found by email", HttpStatus.NOT_FOUND),
     ADMIN_NOT_FOUND_BY_ID("Admin not found by id", HttpStatus.NOT_FOUND),
