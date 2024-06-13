@@ -1,55 +1,46 @@
 package com.E_CommerceSync.E_CommerceSync.config.mail;
 
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+@Configuration
+@ConfigurationProperties(prefix = "spring.mail")
+@Setter
 public class MailConfig {
 
-
-    @Value("${email.sender.host}")
     private String host;
-
-    @Value("${email.sender.port}")
-    private String port;
-
-    @Value("${email.sender.username}")
+    private Integer port;
     private String username;
-
-    @Value("${email.sender.password}")
     private String password;
-
-    @Value("${email.transport.protocol}")
-    private String protocol;
-
-    @Value("${email.smtp.auth}")
-    private String auth;
-
-    @Value("${email.smtp.starttls.enable}")
-    private String ttlsEnable;
-
-    @Value("${email.debug}")
     private String debug;
 
+    @Value("${spring.mail.properties.mail.smtp.auth}")
+    private String auth;
+
+    @Value("${spring.mail.properties.mail.smtp.starttls.enable}")
+    private String starttls;
 
     @Bean
     public JavaMailSender getJavaMailSender() {
-
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
-        mailSender.setPort(Integer.valueOf(port));
+        mailSender.setPort(port);
 
         mailSender.setUsername(username);
         mailSender.setPassword(password);
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true"); // Ensure TLS is enabled
-        props.put("mail.debug", "true");
+        props.put("mail.smtp.auth", auth);
+        props.put("mail.smtp.starttls.enable", starttls);
+        props.put("mail.debug", debug);
         return mailSender;
     }
 }

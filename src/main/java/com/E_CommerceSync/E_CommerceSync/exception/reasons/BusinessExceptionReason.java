@@ -17,8 +17,10 @@ public enum BusinessExceptionReason implements BusinessExceptionPolicy {
     USER_ALREADY_VERIFIED("User already verified", HttpStatus.BAD_REQUEST),
     ADMIN_NOT_FOUND_BY_EMAIL("Admin not found by email", HttpStatus.NOT_FOUND),
     ADMIN_NOT_FOUND_BY_ID("Admin not found by id", HttpStatus.NOT_FOUND),
-    ADMIN_PASSWORD_IS_NOT_CORRECT("Admin password is not correct", HttpStatus.BAD_REQUEST);
-
+    ADMIN_PASSWORD_IS_NOT_CORRECT("Admin password is not correct", HttpStatus.BAD_REQUEST),
+    FROM_MAIL_IS_NULL("From mail is null", HttpStatus.BAD_REQUEST),
+    INVALID_VERIFY_CODE("Invalid verify link", HttpStatus.BAD_REQUEST),
+    VERIFY_CODE_EXPIRED("Verify link expired", HttpStatus.BAD_REQUEST);
 
     private final String code = this.name(); //BusinessExceptionReason.class.getSimpleName();
     private final String message;
