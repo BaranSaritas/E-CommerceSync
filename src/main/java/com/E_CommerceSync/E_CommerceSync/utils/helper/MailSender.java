@@ -30,17 +30,7 @@ public class MailSender {
     @Autowired
     private final SpringTemplateEngine templateEngine;
 
-
-    public void sendSimpleMail(String to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("ozcn.tprkk@gmail.com");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        emailSender.send(message);
-    }
-
-
+    
 
     private void sendHtmlMessage(ThymeLeafEmail email) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
